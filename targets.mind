@@ -1,0 +1,12 @@
+{
+    "imageTarget": [
+        {
+            "image": "assets/targets/paybyrdlogosmall.png",
+            "name": "logo1"
+        },
+        {
+            "image": "assets/targets/totemwallpaper.png",
+            "name": "logo2"
+        }
+    ]
+}
