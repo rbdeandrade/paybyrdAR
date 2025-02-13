@@ -38,17 +38,20 @@
             let previousX, previousY;
             const movementThreshold = 5; // Threshold in pixels
 
-            const onTouchStart = (event) => {
+            const onStart = (event) => {
                 isDragging = true;
-                previousX = event.touches[0].clientX;
-                previousY = event.touches[0].clientY;
+                previousX = event.clientX || event.touches[0].clientX;
+                previousY = event.clientY || event.touches[0].clientY;
             };
 
-            const onTouchMove = (event) => {
-                if (!isDragging || event.touches.length !== 1) return; // Check if there is exactly one touch point
+            const onMove = (event) => {
+                if (!isDragging || (event.touches && event.touches.length !== 1)) return;
 
-                const deltaX = event.touches[0].clientX - previousX;
-                const deltaY = event.touches[0].clientY - previousY;
+                const currentX = event.clientX || event.touches[0].clientX;
+                const currentY = event.clientY || event.touches[0].clientY;
+
+                const deltaX = currentX - previousX;
+                const deltaY = currentY - previousY;
 
                 if (Math.abs(deltaX) < movementThreshold && Math.abs(deltaY) < movementThreshold) return;
 
@@ -59,44 +62,29 @@
                     z: position.z
                 });
 
-                previousX = event.touches[0].clientX;
-                previousY = event.touches[0].clientY;
+                previousX = currentX;
+                previousY = currentY;
             };
 
-            const onTouchEnd = () => {
+            const onEnd = () => {
                 isDragging = false;
             };
 
-            modelContainer.addEventListener('touchstart', onTouchStart);
-            modelContainer.addEventListener('touchmove', onTouchMove);
-            modelContainer.addEventListener('touchend', onTouchEnd);
+            modelContainer.addEventListener('touchstart', onStart);
+            modelContainer.addEventListener('touchmove', onMove);
+            modelContainer.addEventListener('touchend', onEnd);
+            modelContainer.addEventListener('mousedown', onStart);
+            modelContainer.addEventListener('mousemove', onMove);
+            modelContainer.addEventListener('mouseup', onEnd);
+            modelContainer.addEventListener('mouseleave', onEnd);
 
-            modelContainer2.addEventListener('touchstart', (event) => {
-                isDragging = true;
-                previousX = event.touches[0].clientX;
-                previousY = event.touches[0].clientY;
-            });
-            modelContainer2.addEventListener('touchmove', (event) => {
-                if (!isDragging || event.touches.length !== 1) return; 
-
-                const deltaX = event.touches[0].clientX - previousX;
-                const deltaY = event.touches[0].clientY - previousY;
-
-                if (Math.abs(deltaX) < movementThreshold && Math.abs(deltaY) < movementThreshold) return;
-
-                const position = modelContainer2.getAttribute('position');
-                modelContainer2.setAttribute('position', {
-                    x: position.x + deltaX * 0.001,
-                    y: position.y - deltaY * 0.001,
-                    z: position.z
-                });
-
-                previousX = event.touches[0].clientX;
-                previousY = event.touches[0].clientY;
-            });
-            modelContainer2.addEventListener('touchend', () => {
-                isDragging = false;
-            });
+            modelContainer2.addEventListener('touchstart', onStart);
+            modelContainer2.addEventListener('touchmove', onMove);
+            modelContainer2.addEventListener('touchend', onEnd);
+            modelContainer2.addEventListener('mousedown', onStart);
+            modelContainer2.addEventListener('mousemove', onMove);
+            modelContainer2.addEventListener('mouseup', onEnd);
+            modelContainer2.addEventListener('mouseleave', onEnd);
         });
     </script>
 </body>
