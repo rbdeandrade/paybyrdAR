@@ -44,7 +44,7 @@
             };
 
             const onTouchMove = (event) => {
-                if (!isDragging) return;
+                if (!isDragging || event.touches.length !== 1) return; // Check if there is exactly one touch point
 
                 const deltaX = event.touches[0].clientX - previousX;
                 const deltaY = event.touches[0].clientY - previousY;
@@ -74,7 +74,7 @@
                 previousY = event.touches[0].clientY;
             });
             modelContainer2.addEventListener('touchmove', (event) => {
-                if (!isDragging) return;
+                if (!isDragging || event.touches.length !== 1) return; 
 
                 const deltaX = event.touches[0].clientX - previousX;
                 const deltaY = event.touches[0].clientY - previousY;
