@@ -30,10 +30,12 @@
         </a-entity>
     </a-scene>
     <div style="position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); z-index: 1000; background: rgba(255, 255, 255, 0.8); padding: 10px; border-radius: 5px; display: flex; flex-direction: column; align-items: center;">
-        <button id="moveUp">Up</button>
-        <button id="moveLeft">Left</button>
-        <button id="moveRight">Right</button>
-        <button id="moveDown">Down</button>
+        <button id="moveUp" style="margin-bottom: 5px;">&#8593;</button>
+        <div style="display: flex; justify-content: center;">
+            <button id="moveLeft" style="margin-right: 5px;">&#8592;</button>
+            <button id="moveRight" style="margin-left: 5px;">&#8594;</button>
+        </div>
+        <button id="moveDown" style="margin-top: 5px;">&#8595;</button>
     </div>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
