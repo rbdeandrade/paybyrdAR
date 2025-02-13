@@ -8,5 +8,9 @@
             "image": "assets/targets/totemwallpaper.png",
             "name": "totemwallpaper"
         },
+        {
+            "image": "assets/targets/hitotarget.png",
+            "name": "hitotarget"
+        }
     ]
 }

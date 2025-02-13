@@ -12,6 +12,7 @@
         <a-assets>
             <img id="paybyrdlogosmall" src="assets/targets/paybyrdlogosmall.png" />
             <img id="totemwallpaper" src="assets/targets/totemwallpaper.png" />
+            <img id="hitotarget" src="assets/targets/hitotarget.png" />
             <a-asset-item id="avatarModel" src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.2.5/examples/image-tracking/assets/card-example/softmind/scene.gltf"></a-asset-item>
             <a-asset-item id="paxModel" src="assets/models/pax-a920_highpoly.glb"></a-asset-item>
         </a-assets>
@@ -28,7 +29,13 @@
                 animation="property: position; to: 0 0.1 0.1; dur: 1000; easing: easeInOutQuad; loop: true; dir: alternate">
             </a-gltf-model>
         </a-entity>
+        <a-entity mindar-image-target="targetIndex: 2" id="modelContainer3">
+            <a-gltf-model rotation="0 0 0" position="0 0 0.1" scale="0.5 0.5 0.5" src="#paxModel"
+                animation="property: position; to: 0 0.1 0.1; dur: 1000; easing: easeInOutQuad; loop: true; dir: alternate">
+            </a-gltf-model>
+        </a-entity>
     </a-scene>
+
     <div style="position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); z-index: 1000; background: rgba(255, 255, 255, 0.8); padding: 10px; border-radius: 5px; display: flex; flex-direction: column; align-items: center;">
         <button id="moveUp" style="margin-bottom: 5px;">&#8593;</button>
         <div style="display: flex; justify-content: center;">
@@ -37,10 +44,12 @@
         </div>
         <button id="moveDown" style="margin-top: 5px;">&#8595;</button>
     </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const modelContainer = document.getElementById('modelContainer');
             const modelContainer2 = document.getElementById('modelContainer2');
+            const modelContainer3 = document.getElementById('modelContainer3');
 
             const moveModel = (direction) => {
                 const position = modelContainer.getAttribute('position');
