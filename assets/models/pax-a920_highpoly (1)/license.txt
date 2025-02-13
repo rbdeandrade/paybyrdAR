@@ -1,0 +1,11 @@
+Model Information:
+* title:	PAX-A920 (highpoly)
+* source:	https://sketchfab.com/3d-models/pax-a920-highpoly-1715b1517d884e4785713fcd7289f284
+* author:	Maxim.Shamray (https://sketchfab.com/Maxim.Shamray)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "PAX-A920 (highpoly)" (https://sketchfab.com/3d-models/pax-a920-highpoly-1715b1517d884e4785713fcd7289f284) by Maxim.Shamray (https://sketchfab.com/Maxim.Shamray) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
