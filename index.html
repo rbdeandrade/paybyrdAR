@@ -47,26 +47,30 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const modelContainer = document.getElementById('modelContainer');
-            const modelContainer2 = document.getElementById('modelContainer2');
-            const modelContainer3 = document.getElementById('modelContainer3');
+            const modelContainers = [
+                document.getElementById('modelContainer'),
+                document.getElementById('modelContainer2'),
+                document.getElementById('modelContainer3')
+            ];
 
             const moveModel = (direction) => {
-                const position = modelContainer.getAttribute('position');
-                switch (direction) {
-                    case 'up':
-                        modelContainer.setAttribute('position', { x: position.x, y: position.y + 0.1, z: position.z });
-                        break;
-                    case 'down':
-                        modelContainer.setAttribute('position', { x: position.x, y: position.y - 0.1, z: position.z });
-                        break;
-                    case 'left':
-                        modelContainer.setAttribute('position', { x: position.x - 0.1, y: position.y, z: position.z });
-                        break;
-                    case 'right':
-                        modelContainer.setAttribute('position', { x: position.x + 0.1, y: position.y, z: position.z });
-                        break;
-                }
+                modelContainers.forEach(modelContainer => {
+                    const position = modelContainer.getAttribute('position');
+                    switch (direction) {
+                        case 'up':
+                            modelContainer.setAttribute('position', { x: position.x, y: position.y + 0.1, z: position.z });
+                            break;
+                        case 'down':
+                            modelContainer.setAttribute('position', { x: position.x, y: position.y - 0.1, z: position.z });
+                            break;
+                        case 'left':
+                            modelContainer.setAttribute('position', { x: position.x - 0.1, y: position.y, z: position.z });
+                            break;
+                        case 'right':
+                            modelContainer.setAttribute('position', { x: position.x + 0.1, y: position.y, z: position.z });
+                            break;
+                    }
+                });
             };
 
             document.getElementById('moveUp').addEventListener('click', () => moveModel('up'));
