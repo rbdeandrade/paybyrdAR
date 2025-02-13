@@ -36,6 +36,7 @@
 
             let isDragging = false;
             let previousX, previousY;
+            const movementThreshold = 5; // Threshold in pixels
 
             const onTouchStart = (event) => {
                 isDragging = true;
@@ -48,6 +49,8 @@
 
                 const deltaX = event.touches[0].clientX - previousX;
                 const deltaY = event.touches[0].clientY - previousY;
+
+                if (Math.abs(deltaX) < movementThreshold && Math.abs(deltaY) < movementThreshold) return;
 
                 const position = modelContainer.getAttribute('position');
                 modelContainer.setAttribute('position', {
@@ -78,6 +81,8 @@
 
                 const deltaX = event.touches[0].clientX - previousX;
                 const deltaY = event.touches[0].clientY - previousY;
+
+                if (Math.abs(deltaX) < movementThreshold && Math.abs(deltaY) < movementThreshold) return;
 
                 const position = modelContainer2.getAttribute('position');
                 modelContainer2.setAttribute('position', {
