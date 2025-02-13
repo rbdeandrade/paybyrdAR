@@ -29,7 +29,7 @@
             </a-gltf-model>
         </a-entity>
     </a-scene>
-    <div style="position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); z-index: 1000;">
+    <div style="position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); z-index: 1000; background: rgba(255, 255, 255, 0.8); padding: 10px; border-radius: 5px;">
         <button id="moveUp">Up</button>
         <button id="moveLeft">Left</button>
         <button id="moveRight">Right</button>
@@ -39,58 +39,6 @@
         document.addEventListener('DOMContentLoaded', () => {
             const modelContainer = document.getElementById('modelContainer');
             const modelContainer2 = document.getElementById('modelContainer2');
-
-            let isDragging = false;
-            let previousX, previousY;
-            const movementThreshold = 5; // Threshold in pixels
-
-            const onStart = (event) => {
-                isDragging = true;
-                previousX = event.clientX || event.touches[0].clientX;
-                previousY = event.clientY || event.touches[0].clientY;
-            };
-
-            const onMove = (event) => {
-                if (!isDragging || (event.touches && event.touches.length !== 1)) return;
-
-                const currentX = event.clientX || event.touches[0].clientX;
-                const currentY = event.clientY || event.touches[0].clientY;
-
-                const deltaX = currentX - previousX;
-                const deltaY = currentY - previousY;
-
-                if (Math.abs(deltaX) < movementThreshold && Math.abs(deltaY) < movementThreshold) return;
-
-                const position = modelContainer.getAttribute('position');
-                modelContainer.setAttribute('position', {
-                    x: position.x + deltaX * 0.001,
-                    y: position.y - deltaY * 0.001,
-                    z: position.z
-                });
-
-                previousX = currentX;
-                previousY = currentY;
-            };
-
-            const onEnd = () => {
-                isDragging = false;
-            };
-
-            modelContainer.addEventListener('touchstart', onStart);
-            modelContainer.addEventListener('touchmove', onMove);
-            modelContainer.addEventListener('touchend', onEnd);
-            modelContainer.addEventListener('mousedown', onStart);
-            modelContainer.addEventListener('mousemove', onMove);
-            modelContainer.addEventListener('mouseup', onEnd);
-            modelContainer.addEventListener('mouseleave', onEnd);
-
-            modelContainer2.addEventListener('touchstart', onStart);
-            modelContainer2.addEventListener('touchmove', onMove);
-            modelContainer2.addEventListener('touchend', onEnd);
-            modelContainer2.addEventListener('mousedown', onStart);
-            modelContainer2.addEventListener('mousemove', onMove);
-            modelContainer2.addEventListener('mouseup', onEnd);
-            modelContainer2.addEventListener('mouseleave', onEnd);
 
             const moveModel = (direction) => {
                 const position = modelContainer.getAttribute('position');
