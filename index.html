@@ -29,6 +29,12 @@
             </a-gltf-model>
         </a-entity>
     </a-scene>
+    <div style="position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); z-index: 1000;">
+        <button id="moveUp">Up</button>
+        <button id="moveLeft">Left</button>
+        <button id="moveRight">Right</button>
+        <button id="moveDown">Down</button>
+    </div>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const modelContainer = document.getElementById('modelContainer');
@@ -85,6 +91,29 @@
             modelContainer2.addEventListener('mousemove', onMove);
             modelContainer2.addEventListener('mouseup', onEnd);
             modelContainer2.addEventListener('mouseleave', onEnd);
+
+            const moveModel = (direction) => {
+                const position = modelContainer.getAttribute('position');
+                switch (direction) {
+                    case 'up':
+                        modelContainer.setAttribute('position', { x: position.x, y: position.y + 0.1, z: position.z });
+                        break;
+                    case 'down':
+                        modelContainer.setAttribute('position', { x: position.x, y: position.y - 0.1, z: position.z });
+                        break;
+                    case 'left':
+                        modelContainer.setAttribute('position', { x: position.x - 0.1, y: position.y, z: position.z });
+                        break;
+                    case 'right':
+                        modelContainer.setAttribute('position', { x: position.x + 0.1, y: position.y, z: position.z });
+                        break;
+                }
+            };
+
+            document.getElementById('moveUp').addEventListener('click', () => moveModel('up'));
+            document.getElementById('moveDown').addEventListener('click', () => moveModel('down'));
+            document.getElementById('moveLeft').addEventListener('click', () => moveModel('left'));
+            document.getElementById('moveRight').addEventListener('click', () => moveModel('right'));
         });
     </script>
 </body>
