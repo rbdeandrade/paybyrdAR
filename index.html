@@ -68,9 +68,30 @@
             modelContainer.addEventListener('touchmove', onTouchMove);
             modelContainer.addEventListener('touchend', onTouchEnd);
 
-            modelContainer2.addEventListener('touchstart', onTouchStart);
-            modelContainer2.addEventListener('touchmove', onTouchMove);
-            modelContainer2.addEventListener('touchend', onTouchEnd);
+            modelContainer2.addEventListener('touchstart', (event) => {
+                isDragging = true;
+                previousX = event.touches[0].clientX;
+                previousY = event.touches[0].clientY;
+            });
+            modelContainer2.addEventListener('touchmove', (event) => {
+                if (!isDragging) return;
+
+                const deltaX = event.touches[0].clientX - previousX;
+                const deltaY = event.touches[0].clientY - previousY;
+
+                const position = modelContainer2.getAttribute('position');
+                modelContainer2.setAttribute('position', {
+                    x: position.x + deltaX * 0.001,
+                    y: position.y - deltaY * 0.001,
+                    z: position.z
+                });
+
+                previousX = event.touches[0].clientX;
+                previousY = event.touches[0].clientY;
+            });
+            modelContainer2.addEventListener('touchend', () => {
+                isDragging = false;
+            });
         });
     </script>
 </body>
