@@ -19,17 +19,17 @@
 
         <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
 
-        <a-entity mindar-image-target="targetIndex: 0" id="modelContainer">
+        <a-entity mindar-image-target="targetIndex: 0" id="modelContainer" visible="false">
             <a-gltf-model rotation="0 0 0" position="0 0 0.1" scale="0.5 0.5 0.5" src="#paxModel"
                 animation="property: position; to: 0 0.1 0.1; dur: 1000; easing: easeInOutQuad; loop: true; dir: alternate">
             </a-gltf-model>
         </a-entity>
-        <a-entity mindar-image-target="targetIndex: 1" id="modelContainer2">
+        <a-entity mindar-image-target="targetIndex: 1" id="modelContainer2" visible="false">
             <a-gltf-model rotation="0 0 0" position="0 0 0.1" scale="0.5 0.5 0.5" src="#paxModel"
                 animation="property: position; to: 0 0.1 0.1; dur: 1000; easing: easeInOutQuad; loop: true; dir: alternate">
             </a-gltf-model>
         </a-entity>
-        <a-entity mindar-image-target="targetIndex: 2" id="modelContainer3">
+        <a-entity mindar-image-target="targetIndex: 2" id="modelContainer3" visible="false">
             <a-gltf-model rotation="0 0 0" position="0 0 0.1" scale="0.5 0.5 0.5" src="#paxModel"
                 animation="property: position; to: 0 0.1 0.1; dur: 1000; easing: easeInOutQuad; loop: true; dir: alternate">
             </a-gltf-model>
@@ -77,6 +77,15 @@
             document.getElementById('moveDown').addEventListener('click', () => moveModel('down'));
             document.getElementById('moveLeft').addEventListener('click', () => moveModel('left'));
             document.getElementById('moveRight').addEventListener('click', () => moveModel('right'));
+
+            modelContainers.forEach((modelContainer, index) => {
+                modelContainer.addEventListener('targetFound', () => {
+                    modelContainer.setAttribute('visible', true);
+                });
+                modelContainer.addEventListener('targetLost', () => {
+                    modelContainer.setAttribute('visible', true);
+                });
+            });
         });
     </script>
 </body>
