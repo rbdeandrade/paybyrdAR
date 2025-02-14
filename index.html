@@ -53,6 +53,8 @@
                 document.getElementById('modelContainer3')
             ];
 
+            let intervalId;
+
             const moveModel = (direction) => {
                 modelContainers.forEach(modelContainer => {
                     const position = modelContainer.getAttribute('position');
@@ -73,10 +75,30 @@
                 });
             };
 
-            document.getElementById('moveUp').addEventListener('click', () => moveModel('up'));
-            document.getElementById('moveDown').addEventListener('click', () => moveModel('down'));
-            document.getElementById('moveLeft').addEventListener('click', () => moveModel('left'));
-            document.getElementById('moveRight').addEventListener('click', () => moveModel('right'));
+            const startMoving = (direction) => {
+                moveModel(direction);
+                intervalId = setInterval(() => moveModel(direction), 100);
+            };
+
+            const stopMoving = () => {
+                clearInterval(intervalId);
+            };
+
+            document.getElementById('moveUp').addEventListener('mousedown', () => startMoving('up'));
+            document.getElementById('moveUp').addEventListener('mouseup', stopMoving);
+            document.getElementById('moveUp').addEventListener('mouseleave', stopMoving);
+
+            document.getElementById('moveDown').addEventListener('mousedown', () => startMoving('down'));
+            document.getElementById('moveDown').addEventListener('mouseup', stopMoving);
+            document.getElementById('moveDown').addEventListener('mouseleave', stopMoving);
+
+            document.getElementById('moveLeft').addEventListener('mousedown', () => startMoving('left'));
+            document.getElementById('moveLeft').addEventListener('mouseup', stopMoving);
+            document.getElementById('moveLeft').addEventListener('mouseleave', stopMoving);
+
+            document.getElementById('moveRight').addEventListener('mousedown', () => startMoving('right'));
+            document.getElementById('moveRight').addEventListener('mouseup', stopMoving);
+            document.getElementById('moveRight').addEventListener('mouseleave', stopMoving);
 
             modelContainers.forEach((modelContainer, index) => {
                 modelContainer.addEventListener('targetFound', () => {
